@@ -68,8 +68,8 @@ En MiniStore, la consulta permite detectar los productos 108 y 109 sin ventas y 
 
 Esto resulta útil en procesos de auditoría y control de calidad de datos antes de construir reportes o dashboards.
 
-## Nota sobre MySQL
+## Nota sobre SQL Server
 
-MySQL no soporta `FULL OUTER JOIN` directamente.
+Para realizar esta práctica utilicé SQL Server.
 
-Por eso se puede simular combinando `LEFT JOIN` y `RIGHT JOIN` mediante `UNION`.
+SQL Server permite utilizar `FULL OUTER JOIN` directamente, por lo que en la Consulta 3 se utilizó esta unión para obtener todos los registros de ambas tablas, incluyendo aquellos que no tienen coincidencia.
