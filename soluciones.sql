@@ -74,9 +74,9 @@ ORDER BY v.venta_id;
 
 
 -- ── CONSULTA 3: FULL OUTER JOIN ───────────
--- Pregunta de negocio: Vista completa de auditoría.
--- MySQL no soporta FULL OUTER JOIN directamente,
--- por eso se simula con LEFT JOIN + UNION + RIGHT JOIN.
+-- Pregunta de negocio: Vista completa de auditoría que muestre
+-- todos los productos y todas las ventas sin perder ninguna fila,
+-- identificando tanto productos sin ventas como ventas sin producto.
 
 SELECT
     p.producto_id AS producto_catalogo,
@@ -89,22 +89,6 @@ SELECT
     v.cantidad,
     v.fecha_venta
 FROM productos p
-LEFT JOIN ventas v
-    ON p.producto_id = v.producto_id
-
-UNION
-
-SELECT
-    p.producto_id AS producto_catalogo,
-    p.nombre,
-    p.categoria,
-    p.precio,
-    v.venta_id,
-    v.producto_id AS producto_vendido,
-    v.cliente_id,
-    v.cantidad,
-    v.fecha_venta
-FROM productos p
-RIGHT JOIN ventas v
+FULL OUTER JOIN ventas v
     ON p.producto_id = v.producto_id
 ORDER BY producto_catalogo, venta_id;
